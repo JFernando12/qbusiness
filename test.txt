@@ -1,0 +1,106 @@
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: 'd7dbb461-1d78-4e5b-ab64-160866fd99cc',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  applicationArn: 'arn:aws:qbusiness:us-east-1:947403101409:application/ece0000e-e3aa-444e-87c6-bb2031034a48',
+  applicationId: 'ece0000e-e3aa-444e-87c6-bb2031034a48'
+}
+
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: 'acdd7ed1-1cf4-4f55-8f06-eceddf26156a',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  indexArn: 'arn:aws:qbusiness:us-east-1:947403101409:application/ece0000e-e3aa-444e-87c6-bb2031034a48/index/2a97b25f-89d1-4820-97f9-711a620ded03',
+  indexId: '2a97b25f-89d1-4820-97f9-711a620ded03'
+}
+
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '9189619f-7db5-450f-a25c-181e8563d8ac',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  retrieverArn: 'arn:aws:qbusiness:us-east-1:947403101409:application/ece0000e-e3aa-444e-87c6-bb2031034a48/retriever/284de5bc-2d8f-4e9f-90fd-75144583a2c8',
+  retrieverId: '284de5bc-2d8f-4e9f-90fd-75144583a2c8'
+}
+
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '3825560a-5a90-4572-99ba-b4206058a5ce',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  dataSourceArn: 'arn:aws:qbusiness:us-east-1:947403101409:application/ece0000e-e3aa-444e-87c6-bb2031034a48/index/2a97b25f-89d1-4820-97f9-711a620ded03/data-source/5aca0a0b-a969-452a-b0b6-f925530a8013',
+  dataSourceId: '5aca0a0b-a969-452a-b0b6-f925530a8013'
+}
+
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: 'a0ef1c92-d50f-4534-88f0-c43d971d4242',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  dataSourceArn: 'arn:aws:qbusiness:us-east-1:947403101409:application/ece0000e-e3aa-444e-87c6-bb2031034a48/index/2a97b25f-89d1-4820-97f9-711a620ded03/data-source/3365f19d-2412-4f24-9d02-f730133e6be1',
+  dataSourceId: '3365f19d-2412-4f24-9d02-f730133e6be1'
+}
+
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '1688cbd6-0a8e-4d53-a76e-d4f2953cd8b6',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  executionId: '874e8c4c-56bf-48bf-87c7-ba3a01106ce5'
+}
+
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: '11bad935-2e87-470d-bc6a-a9606002dcf2',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  webExperienceArn: 'arn:aws:qbusiness:us-east-1:947403101409:application/ece0000e-e3aa-444e-87c6-bb2031034a48/web-experience/f52acaa9-6554-480d-9cbb-da66a2a6892c',
+  webExperienceId: 'f52acaa9-6554-480d-9cbb-da66a2a6892c'
+}
+
+response:  {
+  '$metadata': {
+    httpStatusCode: 200,
+    requestId: 'cd8fcbbb-0003-4786-9da5-720ba557787b',
+    extendedRequestId: undefined,
+    cfId: undefined,
+    attempts: 1,
+    totalRetryDelay: 0
+  },
+  conversationId: '7c6ae533-742d-48e0-b47e-967e4ba91a89',
+  failedAttachments: [],
+  sourceAttributions: [],
+  systemMessage: 'Sorry, I could not find relevant information to complete your request.',
+  systemMessageId: '0630e1cc-1d48-4913-8eb3-98847d687780',
+  userMessageId: 'b1e716b2-6e4d-46e9-926d-5af79b878d49'
+}
