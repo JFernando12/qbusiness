@@ -7,6 +7,7 @@ const create = async (req: Request, res: Response) => {
   const rfc = req.body.rfc;
   const description = req.body.description;
 
+  // Create an application
   const application = await QBusiness.createApplication({
     displayName: rfc + '_application',
     roleArn: `arn:aws:iam::${AWS_ACCOUNT_ID}:role/qbusiness-logs-test`,
