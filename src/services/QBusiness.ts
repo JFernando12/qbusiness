@@ -10,6 +10,14 @@ import {
   CreateDataSourceCommandInput,
   StartDataSourceSyncJobCommand,
   StartDataSourceSyncJobCommandInput,
+  ListApplicationsCommand,
+  ListApplicationsCommandInput,
+  GetApplicationCommand,
+  GetApplicationCommandInput,
+  GetIndexCommand,
+  GetIndexCommandInput,
+  ChatSyncCommand,
+  ChatSyncCommandInput,
 } from '@aws-sdk/client-qbusiness';
 import { ACCESS_KEY_ID, AWS_REGION, SECRET_ACCESS_KEY } from '../config/envs';
 
@@ -52,6 +60,34 @@ export class QBusiness {
 
   static async syncDataSource(startDataSourceSyncJobCommandInput: StartDataSourceSyncJobCommandInput) {
     const command = new StartDataSourceSyncJobCommand(startDataSourceSyncJobCommandInput);
+    const response = await client.send(command);
+
+    return response;
+  }
+
+  static async listApplications(listApplicationsCommandInput: ListApplicationsCommandInput) {
+    const command = new ListApplicationsCommand(listApplicationsCommandInput);
+    const response = await client.send(command);
+
+    return response;
+  }
+
+  static async getApplication(getApplicationCommandInput: GetApplicationCommandInput) {
+    const command = new GetApplicationCommand(getApplicationCommandInput);
+    const response = await client.send(command);
+
+    return response;
+  }
+
+  static async getIndex(getIndexCommandInput: GetIndexCommandInput) {
+    const command = new GetIndexCommand(getIndexCommandInput);
+    const response = await client.send(command);
+
+    return response;
+  }
+
+  static async chantSync(chanSyncCommandInput: ChatSyncCommandInput) {
+    const command = new ChatSyncCommand(chanSyncCommandInput);
     const response = await client.send(command);
 
     return response;

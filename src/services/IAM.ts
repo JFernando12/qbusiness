@@ -136,14 +136,12 @@ export class IAM {
     });
     const policyArn = responsePolicy.Policy?.Arn;
 
-    // Attach policy to role
     await IAM.attachRolePolicy({
       PolicyArn: policyArn,
       RoleName: roleName,
     });
 
-    // Wait for the role to be available
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 10000));
 
     return { roleArn, policyArn };
   }
