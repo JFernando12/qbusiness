@@ -6,7 +6,7 @@ import { AWS_ACCOUNT_ID } from '../config/envs';
 const create = async (req: Request, res: Response) => {
 
   const response = await QBusiness.createApplication({
-    displayName: 'application7',
+    displayName: 'application10',
     roleArn: `arn:aws:iam::${AWS_ACCOUNT_ID}:role/qbusiness-logs-test`,
     description: 'STRING_VALUE',
     tags: [
@@ -55,24 +55,24 @@ const create = async (req: Request, res: Response) => {
     AssumeRolePolicyDocument: JSON.stringify({
       "Version": "2012-10-17",
       "Statement": [
-        {
-          "Sid": "AllowsAmazonQToAssumeRoleForServicePrincipal",
-          "Effect": "Allow",
-          "Principal": {
-            "Service": "qbusiness.amazonaws.com"
-          },
-          "Action": "sts:AssumeRole",
-          "Condition": {
-            "StringEquals": {
-              "aws:SourceAccount": `${AWS_ACCOUNT_ID}`
-            },
-            "ArnLike": {
-              "aws:SourceArn": `arn:aws:qbusiness:us-east-1:${AWS_ACCOUNT_ID}:application/${applicationId}`
-            }
+          {
+              "Sid": "AllowsAmazonQToAssumeRoleForServicePrincipal",
+              "Effect": "Allow",
+              "Principal": {
+                  "Service": "qbusiness.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole",
+              "Condition": {
+                  "StringEquals": {
+                      "aws:SourceAccount": `${AWS_ACCOUNT_ID}`
+                  },
+                  "ArnLike": {
+                      "aws:SourceArn": `arn:aws:qbusiness:us-east-1:${AWS_ACCOUNT_ID}:application/${applicationId}`
+                  }
+              }
           }
-        }
       ]
-    }),
+  }),
     RoleName: roleName,
   });
   const roleArn = responseRole.Role?.Arn;
@@ -82,7 +82,38 @@ const create = async (req: Request, res: Response) => {
   const responsePolicy = await IAM.createPolicy({
     PolicyDocument: JSON.stringify({
       "Version": "2012-10-17",
-      "Statement": [{
+      "Statement": [
+          {
+              "Sid": "AllowsAmazonQToGetObjectfromS3",
+              "Action": [
+                  "s3:GetObject"
+              ],
+              "Resource": [
+                  `arn:aws:s3:::${AWS_ACCOUNT_ID}-qbusiness-test/*`
+              ],
+              "Effect": "Allow",
+              "Condition": {
+                  "StringEquals": {
+                      "aws:ResourceAccount": `${AWS_ACCOUNT_ID}`
+                  }
+              }
+          },
+          {
+              "Sid": "AllowsAmazonQToListS3Buckets",
+              "Action": [
+                  "s3:ListBucket"
+              ],
+              "Resource": [
+                  `arn:aws:s3:::${AWS_ACCOUNT_ID}-qbusiness-test`
+              ],
+              "Effect": "Allow",
+              "Condition": {
+                  "StringEquals": {
+                      "aws:ResourceAccount": `${AWS_ACCOUNT_ID}`
+                  }
+              }
+          },
+          {
               "Sid": "AllowsAmazonQToIngestDocuments",
               "Effect": "Allow",
               "Action": [
@@ -92,7 +123,7 @@ const create = async (req: Request, res: Response) => {
               "Resource": `arn:aws:qbusiness:us-east-1:${AWS_ACCOUNT_ID}:application/${applicationId}/index/${indexId}`
           },
           {
-              "Sid": "AllowsAmazonQToIngestPrincipalMapping",
+              "Sid": "AllowsAmazonQToCallPrincipalMappingAPIs",
               "Effect": "Allow",
               "Action": [
                   "qbusiness:PutGroup",
@@ -118,6 +149,8 @@ const create = async (req: Request, res: Response) => {
     PolicyArn: policyArn,
     RoleName: roleName,
   });
+
+  console.log('roleArn:: ', roleArn);
 
   // Create a data source
   const responseDataSource = await QBusiness.createDataSource({
