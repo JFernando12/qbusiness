@@ -13,13 +13,13 @@ import {
   ScanCommand,
   ScanCommandInput,
 } from '@aws-sdk/client-dynamodb';
-import { ACCESS_KEY_ID, AWS_REGION, SECRET_ACCESS_KEY } from '../config/envs';
+import { AWS_ACCESS_KEY_ID, AWS_REGION, AWS_SECRET_ACCESS_KEY } from '../config/envs';
 
 const client = new DynamoDBClient({
   region: AWS_REGION,
   credentials: {
-    accessKeyId: ACCESS_KEY_ID,
-    secretAccessKey: SECRET_ACCESS_KEY,
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
   },
 });
 

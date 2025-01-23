@@ -8,17 +8,17 @@ import {
   IAMClient,
 } from '@aws-sdk/client-iam';
 import {
-  ACCESS_KEY_ID,
+  AWS_ACCESS_KEY_ID,
   AWS_ACCOUNT_ID,
   AWS_REGION,
-  SECRET_ACCESS_KEY,
+  AWS_SECRET_ACCESS_KEY,
 } from '../config/envs';
 
 const client = new IAMClient({
   region: AWS_REGION,
   credentials: {
-    accessKeyId: ACCESS_KEY_ID,
-    secretAccessKey: SECRET_ACCESS_KEY,
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
   },
 });
 

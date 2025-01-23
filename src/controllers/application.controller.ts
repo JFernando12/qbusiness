@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { QBusiness } from '../services/QBusiness';
 import { IAM } from '../services/IAM';
-import { AWS_ACCOUNT_ID } from '../config/envs';
+import { AWS_ACCOUNT_ID, AWS_REGION } from '../config/envs';
 import { DynamoDB } from '../services/DynamoDB';
 
 const create = async (req: Request, res: Response) => {
@@ -9,6 +9,7 @@ const create = async (req: Request, res: Response) => {
   const description = req.body.description;
 
   // Check if the rfc already exists
+  console.log('Checking if the rfc already exists');
   const item = await DynamoDB.getItem({
     TableName: 'qbusiness-applications',
     Key: {
@@ -21,14 +22,18 @@ const create = async (req: Request, res: Response) => {
   }
 
   // Create an application
+  console.log('Creating application');
   const application = await QBusiness.createApplication({
     displayName: rfc + '_application',
     roleArn: `arn:aws:iam::${AWS_ACCOUNT_ID}:role/qbusiness-logs-test`,
     description: description || 'Application created by QBusiness API',
+    identityType: 'AWS_IAM_IDC',
+    identityCenterInstanceArn: `arn:aws:sso:::instance/ssoins-abcdefghijkl1234`,
   });
   const applicationId = application.applicationId;
 
   // Create an index
+  console.log('Creating index');
   const index = await QBusiness.createIndex({
     applicationId: applicationId,
     displayName: applicationId + '_index',
@@ -36,6 +41,7 @@ const create = async (req: Request, res: Response) => {
   const indexId = index.indexId;
 
   // Create a retriever
+  console.log('Creating retriever');
   const retriever = await QBusiness.createRetriever({
     applicationId: applicationId,
     type: 'NATIVE_INDEX',
@@ -48,12 +54,14 @@ const create = async (req: Request, res: Response) => {
   });
 
   // Create role and policy
+  console.log('Creating role and policy');
   const { roleArn } = await IAM.createRoleDataSourceS3(
     applicationId!,
     indexId!
   );
 
   // Save rfc and applicationId in a DynamoDB table
+  console.log('Saving rfc and applicationId in DynamoDB');
   await DynamoDB.putItem({
     TableName: 'qbusiness-applications',
     Item: {
